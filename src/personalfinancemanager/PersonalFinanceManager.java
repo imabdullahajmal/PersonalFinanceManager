@@ -41,9 +41,7 @@ public class PersonalFinanceManager {
                 +"4. Add Budget\n"
                 +"5. View Budgets\n"
                 +"6. Remove Budget\n"
-                +"7. Add Goal\n"
-                +"8. View Goals\n"
-                +"9. Quit\n"
+                +"7. Quit\n"
         );
     }
     
@@ -71,7 +69,6 @@ public class PersonalFinanceManager {
     
     
     public static void main(String[] args) {
-        Goal goalManager = new Goal();
         BudgetManager bmr = new BudgetManager();
         TransactionManager trs = new TransactionManager();
         Scanner inp = new Scanner(System.in);
@@ -170,8 +167,8 @@ public class PersonalFinanceManager {
                     break;
                     
                 case '7':
-                    System.out.println("Under development");
-                    break;
+                    System.out.println("Exiting App");
+                    return;
 
                 default:
                     System.out.println("Invalid option. Try again.\n---");

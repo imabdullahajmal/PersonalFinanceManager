@@ -17,6 +17,7 @@ public class MiniDatabase {
     private static final String transactionsFilePath = "data\\transactions.csv";
     private static final String budgetsFilePath = "data\\budgets.csv";
     private static final String goalsFilePath = "data\\goals.csv";
+    
 
     public MiniDatabase() {
         createFiles();
@@ -24,14 +25,12 @@ public class MiniDatabase {
     
     
 
-    // Create files if they do not exist
     private void createFiles() {
         createFile(transactionsFilePath);
         createFile(budgetsFilePath);
         createFile(goalsFilePath);
     }
 
-    // Helper method to create a file
     private void createFile(String filePath) {
         try {
             File file = new File(filePath);
@@ -52,7 +51,7 @@ public class MiniDatabase {
                 lines++;
             }
         } catch (IOException e) {
-            System.out.println("Error counting lines in the file: " + e.getMessage());
+            System.out.println("Could not count lines in the file: " + e.getMessage());
         }
         return lines;
     }
@@ -63,8 +62,7 @@ public class MiniDatabase {
             writer.newLine();
             writer.close();
         } catch (IOException e) {
-            System.out.println("An error occurred while adding a transaction.");
-            e.printStackTrace();
+            System.out.println("An error occurred while adding a transaction. "+ e.getMessage());
         }
     }
     
@@ -200,7 +198,7 @@ public class MiniDatabase {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error reading the budget file: " + e.getMessage());
+            System.out.println("Could not read the budget file: " + e.getMessage());
         }
 
         try (PrintWriter writer = new PrintWriter(new File(budgetsFilePath))) {
@@ -208,7 +206,7 @@ public class MiniDatabase {
                 writer.println(budgetData[i][0] + "," + budgetData[i][1]);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Error saving updated budget data: " + e.getMessage());
+            System.out.println("Could not update budget data: " + e.getMessage());
         }
     }
     
@@ -223,7 +221,7 @@ public class MiniDatabase {
             }
         }
     } catch (IOException e) {
-        System.out.println("Error reading the transaction file: " + e.getMessage());
+        System.out.println("Could not read the transaction file: " + e.getMessage());
     }
 
     return false;
@@ -249,7 +247,7 @@ public class MiniDatabase {
             }
         }
     } catch (IOException e) {
-        System.out.println("Error reading the transaction file: " + e.getMessage());
+        System.out.println("Could not read the transaction file: " + e.getMessage());
     }
 
     try (PrintWriter writer = new PrintWriter(new File(transactionsFilePath))) {
@@ -258,11 +256,9 @@ public class MiniDatabase {
         }
         System.out.println("Transaction for category '" + category + "' deleted successfully.");
     } catch (FileNotFoundException e) {
-        System.out.println("Error saving updated transaction data: " + e.getMessage());
+        System.out.println("Could not save updated transaction data: " + e.getMessage());
     }
 }
-
-    
 
 }
 
