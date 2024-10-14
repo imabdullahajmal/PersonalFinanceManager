@@ -16,7 +16,6 @@ public class MiniDatabase {
 //    private static final String transactionsFilePath = "D:\\Abdullah\\Java\\PersonalFinanceManager\\data\\transactions.csv";
     private static final String transactionsFilePath = "data\\transactions.csv";
     private static final String budgetsFilePath = "data\\budgets.csv";
-    private static final String goalsFilePath = "data\\goals.csv";
     
 
     public MiniDatabase() {
@@ -28,7 +27,6 @@ public class MiniDatabase {
     private void createFiles() {
         createFile(transactionsFilePath);
         createFile(budgetsFilePath);
-        createFile(goalsFilePath);
     }
 
     private void createFile(String filePath) {
@@ -73,18 +71,18 @@ public class MiniDatabase {
             noOfLines++;
         }
 
-        String[][] goalsArray = new String[noOfLines][3];
+        String[][] transactions = new String[noOfLines][3];
 
         try (BufferedReader newReader = new BufferedReader(new FileReader(transactionsFilePath))) {
             String line;
             int index = 0;
             while ((line = newReader.readLine()) != null) {
-                goalsArray[index] = line.split(",");
+                transactions[index] = line.split(",");
                 index++;
             }
         }
 
-        return goalsArray;
+        return transactions;
         } catch (IOException e) {
             System.out.println("Error.");
             e.printStackTrace();
@@ -92,41 +90,8 @@ public class MiniDatabase {
         }
     }
 
-    public void addGoal(String goal) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(goalsFilePath, true))){
-            writer.write(goal);
-            writer.newLine();
-        } catch (IOException e) {
-            System.out.println("Error: could't add goal.");
-            e.printStackTrace();
-        }
-    }
+    
 
-    public String[][] readGoals() {
-    try (BufferedReader reader = new BufferedReader(new FileReader(goalsFilePath))) {
-        int noOfLines = 0;
-        while (reader.readLine() != null) {
-            noOfLines++;
-        }
-
-        String[][] goalsArray = new String[noOfLines][3];
-
-        try (BufferedReader newReader = new BufferedReader(new FileReader(goalsFilePath))) {
-            String line;
-            int index = 0;
-            while ((line = newReader.readLine()) != null) {
-                goalsArray[index] = line.split(",");
-                index++;
-            }
-        }
-
-        return goalsArray;
-    } catch (IOException e) {
-        System.out.println("Error.");
-        e.printStackTrace();
-        return new String[0][0];
-    }
-}
     
     public void addBudget(String budget) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(budgetsFilePath, true))){
@@ -259,6 +224,11 @@ public class MiniDatabase {
         System.out.println("Could not save updated transaction data: " + e.getMessage());
     }
 }
+    public void clearUserData() {
+        File budgets = new File(budgetsFilePath);
+        File transactions = new File(budgetsFilePath);
+        File goals = new File(budgetsFilePath);
+    }
 
 }
 

@@ -41,7 +41,8 @@ public class PersonalFinanceManager {
                 +"4. Add Budget\n"
                 +"5. View Budgets\n"
                 +"6. Remove Budget\n"
-                +"7. Quit\n"
+                +"7. Clear user data\n"
+                +"8. Quit\n"
         );
     }
     
@@ -69,6 +70,7 @@ public class PersonalFinanceManager {
     
     
     public static void main(String[] args) {
+
         BudgetManager bmr = new BudgetManager();
         TransactionManager trs = new TransactionManager();
         Scanner inp = new Scanner(System.in);
@@ -121,6 +123,8 @@ public class PersonalFinanceManager {
                 case '2':
                     String[][] data = trs.getTransactions();
                     msgs.msg(3, " Transaction History ");
+                    if(data.length==0)
+                        msgs.msg(1, " No transactions found! ");
                     for(int i=0;i<data.length;i++){
                         if(data[i][1].strip().toLowerCase().equals("true")){
                             msgs.msg(5, "[->]  Recieved Rs "+data[i][0]+". "+data[i][2]+". ");
@@ -167,7 +171,19 @@ public class PersonalFinanceManager {
                     break;
                     
                 case '7':
-                    System.out.println("Exiting App");
+                    msgs.msg(3, "Are you sure you want to delete all the user data?\ny - Confirm");
+                    char delConf = inp.nextLine().charAt(0);
+                    if(delConf=='y'){
+                        msgs.msg(0, " Deleting user data ");
+//                        new MiniDatabase.;
+                        msgs.msg(0, " User data deleting successfully ");
+                    }
+                    else
+                        msgs.msg(2, " Confirmation Failed! ");
+                    break;
+                    
+                case '8':
+                    msgs.msg(3, " Exiting App ");
                     return;
 
                 default:

@@ -4,7 +4,7 @@
  */
 package personalfinancemanager;
 
-import static personalfinancemanager.PersonalFinanceManager.msgs;
+
 
 /**
  *
