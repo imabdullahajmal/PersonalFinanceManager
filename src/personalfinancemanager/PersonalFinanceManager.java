@@ -41,8 +41,7 @@ public class PersonalFinanceManager {
                 +"4. Add Budget\n"
                 +"5. View Budgets\n"
                 +"6. Remove Budget\n"
-                +"7. Clear user data\n"
-                +"8. Quit\n"
+                +"7. Quit\n"
         );
     }
     
@@ -170,19 +169,8 @@ public class PersonalFinanceManager {
                     bmr.removeBudget(deleteBudget);
                     break;
                     
-                case '7':
-                    msgs.msg(3, "Are you sure you want to delete all the user data?\ny - Confirm");
-                    char delConf = inp.nextLine().charAt(0);
-                    if(delConf=='y'){
-                        msgs.msg(0, " Deleting user data ");
-//                        new MiniDatabase.;
-                        msgs.msg(0, " User data deleting successfully ");
-                    }
-                    else
-                        msgs.msg(2, " Confirmation Failed! ");
-                    break;
                     
-                case '8':
+                case '7':
                     msgs.msg(3, " Exiting App ");
                     return;
 
